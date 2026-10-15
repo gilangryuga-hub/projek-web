@@ -1,0 +1,318 @@
+/* ===== Reset & variabel ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #0f1033;
+  --card-bg: rgba(30, 38, 56, 0.95);
+  --accent: #4a6ee0;
+  --text: #ffffff;
+  --text-muted: #d5d8e4;
+  --border: #c9ccd6;
+  --font: "Noto Serif", Georgia, serif;
+}
+
+/* Pengaturan untuk seluruh isi halaman */
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg-dark);
+}
+
+/* Semua link (<a>) */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* ===== Halaman & background ===== */
+.page {
+  min-height: 100vh;
+  position: relative;
+  padding: 24px 28px;
+  /* Ganti 'images/bg.jpg' dengan gambar bioskop/popcorn milikmu */
+  background:
+    linear-gradient(rgba(15, 16, 51, 0.75), rgba(15, 16, 51, 0.85)),
+    url("images/bg.jpg") center / cover no-repeat,
+    radial-gradient(circle at 20% 80%, #2b2f6b, #0f1033 70%);
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.logo i {
+  font-size: 46px;
+  color: #d9d6f5;
+}
+
+.signup-link {
+  font-size: 15px;
+  text-align: center;   
+  margin-top: 24px;     
+}
+
+/* ===== Konten utama ===== */
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px 0 50px;
+  min-height: calc(100vh - 140px);
+}
+
+/* Teks sambutan */
+.welcome h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.welcome h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 4px 0 10px;
+}
+
+.welcome p {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+
+
+/* ===== Kartu login ===== */
+.login-card {
+  width: 442px;
+  max-width: 100%;
+  padding: 30px 36px 36px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+
+
+/* Judul & subjudul */
+.login-title {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.login-subtitle {
+  font-size: 15px;
+  margin-bottom: 26px;
+}
+
+
+
+/* Input */
+.input-group {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.input-group input {
+  width: 100%;
+  height: 48px;
+  padding: 0 46px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-group input::placeholder {
+  color: var(--text-muted);
+}
+
+.input-group input:focus {
+  border-color: var(--accent);
+}
+
+
+
+/* Ikon di dalam input (kiri & kanan) */
+.input-group .icon-left,
+.input-group .icon-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--text);
+}
+
+.icon-left {
+  left: 16px;
+}
+
+.icon-right {
+  right: 16px;
+  cursor: pointer;
+}
+
+
+
+/* Ingat saya & lupa password */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0;
+  font-size: 15px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.remember input {
+  display: none;
+}
+
+.checkmark {
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 5px;
+  border: 2px solid #7f95ea;
+}
+
+.remember input:checked + .checkmark {
+  box-shadow: 0 0 0 2px rgba(74, 110, 224, 0.4);
+}
+
+.forgot {
+  font-size: 14px;
+}
+
+
+
+/* Tombol login */
+.btn-login {
+  width: 100%;
+  height: 48px;
+  background: var(--accent);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 18px;
+  border: 1px solid #7f95ea;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-login:hover {
+  background: #3b5bc8;
+}
+
+
+
+/* Pembatas "atau" */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px 0 24px;
+  font-size: 15px;
+}
+
+/* _____ ATAU _____ */
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+
+
+/* Tombol sosial GOOGLE DAN APPLE*/
+.btn-social {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  margin-bottom: 16px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-social:last-child {
+  margin-bottom: 0;
+}
+
+.btn-social:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-social svg,
+.btn-social i {
+  position: absolute;
+  left: 38px;
+  font-size: 30px;
+}
+
+
+
+/*  Responsif (untuk layar kecil / HP / tablet) */
+@media (max-width: 900px) {
+  .main {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px 0;
+  }
+
+  .welcome {
+    margin-bottom: 10px;
+  }
+
+  .login-card {
+    width: 100%;
+  }
+
+  .logo {
+    font-size: 32px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

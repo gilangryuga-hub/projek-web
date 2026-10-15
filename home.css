@@ -1,0 +1,327 @@
+/* ==========================================================
+   HOME.CSS - HALAMAN UTAMA TERRORSTREAM
+   ----------------------------------------------------------
+   Urutan bagian:
+   1. Reset & Variabel
+   2. Body
+   3. Navbar
+   4. Hero (banner film)
+   5. Daftar Film (grid + kartu)
+   6. Responsif
+   ========================================================== */
+
+
+/* ==========================================================
+   1. RESET & VARIABEL
+   ========================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;   /* lebar elemen sudah termasuk padding & border */
+}
+
+:root {
+  --bg: #0b0b1a;                     /* warna latar halaman */
+  --accent: #4a6ee0;                 /* biru untuk kata "Stream" */
+  --danger: #d9262c;                 /* merah tombol Trailer */
+  --star: #f5c518;                   /* kuning bintang rating */
+  --text: #ffffff;
+  --border: rgba(255, 255, 255, 0.6);
+  --font: "Noto Serif", Georgia, serif;
+}
+
+
+/* ==========================================================
+   2. BODY
+   ========================================================== */
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;    /* hilangkan garis bawah link */
+}
+
+.accent {
+  color: var(--accent);
+}
+
+
+/* ==========================================================
+   3. NAVBAR  (<header class="navbar">)
+      Isi: logo | menu | kotak search | ikon profil
+   ========================================================== */
+
+.navbar {
+  position: absolute;       /* melayang di atas gambar hero */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;              /* di atas elemen lain */
+  display: flex;
+  align-items: center;      /* semua item sejajar secara vertikal */
+  gap: 36px;                /* jarak antar item */
+  padding: 22px 48px;
+}
+
+/* Logo */
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* Menu: Home, Movies, Series, WatchList */
+.menu {
+  display: flex;
+  gap: 30px;
+  font-weight: 600;
+}
+
+.menu a:hover {
+  color: var(--accent);     /* berubah biru saat disorot */
+}
+
+/* Kotak search */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;        /* dorong search & profil ke sisi kanan */
+  width: 300px;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;            /* hapus garis fokus bawaan */
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 600;
+}
+
+.search-box input::placeholder {
+  color: var(--text);
+}
+
+/* Ikon profil */
+.profile {
+  font-size: 32px;
+}
+
+
+/* ==========================================================
+   4. HERO / BANNER FILM  (<section class="hero">)
+   ========================================================== */
+
+.hero {
+  position: relative;       /* patokan posisi panah */
+  height: 460px;
+  display: flex;
+  align-items: flex-end;    /* info film menempel di bawah */
+  padding: 0 80px 28px;
+
+  /* Latar berlapis: gradasi gelap di atas, gambar film di bawahnya.
+     --hero-bg diisi oleh JavaScript (gambar backdrop film). */
+  background:
+    linear-gradient(to bottom, rgba(11, 11, 26, 0.5) 0%, rgba(11, 11, 26, 0.2) 40%, var(--bg) 100%),
+    var(--hero-bg, #111) center / cover no-repeat;
+}
+
+/* Blok teks info film */
+.hero-info {
+  max-width: 620px;
+}
+
+.hero-info h1 {
+  font-size: 44px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+
+/* Baris: bintang, rating, genre, tahun, durasi */
+.hero-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.star {
+  color: var(--star);
+}
+
+/* Sinopsis: dibatasi 3 baris, sisanya dipotong dengan "..." */
+.hero-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tombol Trailer & WatchList */
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.hero-buttons button {
+  height: 38px;
+  padding: 0 22px;
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-trailer {
+  background: var(--danger);
+  border: none;
+}
+
+.btn-watchlist {
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.btn-watchlist.active {
+  background: var(--accent);        /* biru saat sudah ada di watchlist */
+  border-color: var(--accent);
+}
+
+/* Panah kiri & kanan */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);      /* pas di tengah vertikal */
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.arrow-left  { left: 24px; }
+.arrow-right { right: 24px; }
+
+.arrow:hover {
+  color: var(--accent);
+}
+
+
+/* ==========================================================
+   5. DAFTAR FILM  (<section class="movies">)
+   ========================================================== */
+
+.movies {
+  padding: 24px 48px 48px;
+}
+
+.section-title {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+/* Grid: 7 poster per baris */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);   /* 7 kolom sama lebar */
+  gap: 16px;                                /* jarak antar poster */
+}
+
+/* Kartu satu film */
+.movie-card {
+  position: relative;               /* patokan posisi rating & bookmark */
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);           /* sedikit membesar saat disorot */
+}
+
+.movie-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;              /* proporsi poster */
+  object-fit: cover;                /* gambar menutupi kotak tanpa gepeng */
+}
+
+/* Rating di kiri bawah poster */
+.rating {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-shadow: 0 0 4px #000;        /* bayangan agar terbaca di poster terang */
+}
+
+.rating i {
+  color: var(--star);
+}
+
+/* Bookmark di kanan bawah poster */
+.bookmark {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  text-shadow: 0 0 4px #000;
+}
+
+.bookmark.active {
+  color: var(--accent);             /* biru saat masuk watchlist */
+}
+
+/* Pesan jika tidak ada hasil */
+.empty {
+  grid-column: 1 / -1;              /* melebar memenuhi semua kolom */
+  text-align: center;
+  padding: 40px 0;
+}
+
+
+/* ==========================================================
+   6. RESPONSIF
+   ========================================================== */
+@media (max-width: 1100px) {
+  .movie-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .menu { display: none; }                          /* sembunyikan menu di layar kecil */
+  .navbar { padding: 16px 20px; gap: 16px; }
+  .search-box { width: auto; flex: 1; }
+  .hero { padding: 0 20px 24px; }
+  .hero-info h1 { font-size: 30px; }
+  .arrow { display: none; }
+  .movies { padding: 20px; }
+  .movie-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .movie-grid { grid-template-columns: repeat(2, 1fr); }
+}
